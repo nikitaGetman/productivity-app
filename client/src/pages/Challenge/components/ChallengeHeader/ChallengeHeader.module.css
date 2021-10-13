@@ -1,0 +1,34 @@
+.back {
+  position: absolute;
+  left: 12px;
+  top: 20px;
+}
+.actions {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 12px;
+  top: 20px;
+}
+.isStarted {
+  margin-right: 8px;
+  font-size: 24px;
+}
+.title,
+.category {
+  margin: 0;
+  text-align: left;
+  align-self: flex-start;
+}
+.title {
+  color: var(--white-color);
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  line-height: 30px;
+}
+.category {
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: var(--main-border-radius);
+}

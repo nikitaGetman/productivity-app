@@ -1,0 +1,13 @@
+.title {
+  font-size: 22px;
+  font-weight: 800;
+  padding: 20px 0 8px;
+  margin: 0;
+}
+
+.titleSticky {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--background-color);
+}

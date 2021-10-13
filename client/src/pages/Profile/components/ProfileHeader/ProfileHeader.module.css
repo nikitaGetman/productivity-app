@@ -1,0 +1,23 @@
+.settings {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+
+.avatarWrapper {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--red-color);
+  font-size: 32px;
+  overflow: hidden;
+}
+
+.username {
+  font-size: 20px;
+  font-weight: 500;
+  margin-top: 4px;
+}

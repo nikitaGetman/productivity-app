@@ -1,0 +1,17 @@
+.wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: var(--navbar-height);
+  background-color: var(--background-color);
+  padding: 0 8px;
+  border-radius: 12px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  box-shadow: 0px -5px 15px 0px rgba(50, 50, 50, 0.07);
+}

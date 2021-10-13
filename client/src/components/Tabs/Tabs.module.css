@@ -1,0 +1,21 @@
+.tabs {
+  display: flex;
+  max-width: 100%;
+  overflow-x: auto;
+  margin-bottom: 12px;
+}
+.tab {
+  border: none;
+  outline: none;
+  text-align: left;
+  padding: 2px 16px 0 0;
+  background-color: transparent;
+  color: var(--gray-color);
+  border-bottom: 2px dotted var(--gray-color);
+  margin-right: 12px;
+  transition: all 0.2s;
+}
+.active {
+  color: var(--black-color);
+  border-bottom-color: var(--black-color);
+}

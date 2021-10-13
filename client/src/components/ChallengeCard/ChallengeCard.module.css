@@ -1,0 +1,35 @@
+.item {
+  padding: 12px;
+  border-radius: var(--main-border-radius);
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+}
+.icon {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  line-height: 18px;
+}
+.actions {
+  display: flex;
+  align-items: center;
+  color: var(--primary-color);
+}
+.heart {
+  margin-left: 8px;
+}
+
+.title {
+  margin: 16px 0;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+}

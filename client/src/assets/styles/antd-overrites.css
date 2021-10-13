@@ -1,0 +1,20 @@
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: var(--black-color);
+  border-color: var(--black-color);
+}
+
+.ant-input,
+.ant-input-password {
+  border-radius: var(--main-border-radius);
+}
+
+.ant-input-group-addon {
+  border-top-left-radius: var(--main-border-radius);
+  border-bottom-left-radius: var(--main-border-radius);
+}
+.ant-spin-dot-item {
+  background-color: var(--primary-color);
+}
+.ant-spin-text {
+  color: var(--primary-color);
+}

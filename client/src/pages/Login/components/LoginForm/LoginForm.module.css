@@ -1,0 +1,30 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  max-width: 400px;
+}
+.container {
+  margin-top: 12px;
+  width: 100%;
+}
+.checkbox,
+.text,
+.link {
+  font-weight: 600;
+}
+.link {
+  float: right;
+  color: var(--white-color);
+  text-decoration: underline;
+}
+.link:hover {
+  color: var(--white-color);
+}
+
+.submit {
+  margin: 8px 0;
+}

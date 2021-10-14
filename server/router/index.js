@@ -5,8 +5,11 @@ const authMiddleware = require("../middlewares/authMiddleware");
 
 const router = new Router();
 
+// Authentication
 router.post(
   "/registration",
+  body("name").isString(),
+  body("surname").isString(),
   body("email").isEmail(),
   body("password").isLength({ min: 3, max: 32 }),
   userController.registration
@@ -22,6 +25,6 @@ router.post("/logout", authMiddleware, userController.logout);
 
 router.get("/activate/:link", userController.activate);
 
-router.get("/users", authMiddleware, userController.getUsers); // test for auth
+// Challenges
 
 module.exports = router;

@@ -2,7 +2,7 @@ import { create } from "axios";
 
 const timeout = 600000;
 const axiosInstance = create({
-  baseURL: process.env.API_BASE_URL || "/",
+  baseURL: process.env.API_BASE_URL || "http://localhost:5000/api",
   timeout,
 });
 const defaultErrorInterceptor = (error) => Promise.reject(error);

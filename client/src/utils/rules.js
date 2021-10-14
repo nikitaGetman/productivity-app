@@ -3,4 +3,9 @@ export const rules = {
     required: true,
     message,
   }),
+
+  email: (message = "Некорректный E-mail") => ({
+    type: "email",
+    message,
+  }),
 };

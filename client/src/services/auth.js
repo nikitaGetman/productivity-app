@@ -1,14 +1,14 @@
 import { loadStorageItem, saveStorageItem, removeStorageItem } from "./storage";
 
-// import client from "@/http/client";
+import client from "@/http/client";
 
-const ACCESS_TOKEN = "app:access";
-const REFRESH_TOKEN = "app:refresh";
+const ACCESS_TOKEN = "app:accessToken";
+const REFRESH_TOKEN = "app:refreshToken";
 
 class AuthService {
-  _access = null;
+  _accessToken = null;
 
-  _refresh = null;
+  _refreshToken = null;
 
   _isTokensSync = true;
 
@@ -20,32 +20,32 @@ class AuthService {
     this._isTokensSync = isSync;
   }
 
-  get access() {
-    return this._access;
+  get accessToken() {
+    return this._accessToken;
   }
 
-  set access(token) {
-    this._access = token;
+  set accessToken(token) {
+    this._accessToken = token;
 
     if (this.isTokensSync) {
       if (token) {
-        saveStorageItem(ACCESS_TOKEN, this._access);
+        saveStorageItem(ACCESS_TOKEN, this._accessToken);
       } else {
         removeStorageItem(ACCESS_TOKEN);
       }
     }
   }
 
-  get refresh() {
-    return this._refresh;
+  get refreshToken() {
+    return this._refreshToken;
   }
 
-  set refresh(token) {
-    this._refresh = token;
+  set refreshToken(token) {
+    this._refreshToken = token;
 
     if (this.isTokensSync) {
       if (token) {
-        saveStorageItem(REFRESH_TOKEN, this._refresh);
+        saveStorageItem(REFRESH_TOKEN, this._refreshToken);
       } else {
         removeStorageItem(REFRESH_TOKEN);
       }
@@ -53,87 +53,71 @@ class AuthService {
   }
 
   getAuthHeader() {
-    return this.access ? `Bearer ${this.access}` : undefined;
+    return this.accessToken ? `Bearer ${this.accessToken}` : undefined;
   }
 
-  setAuthTokens({ access, refresh }) {
-    this.access = access;
-    this.refresh = refresh;
+  setAuthTokens({ accessToken, refreshToken }) {
+    this.accessToken = accessToken;
+    this.refreshToken = refreshToken;
   }
 
   hasAuthTokens() {
-    return !!this.access || !!this.refresh;
+    return !!this.accessToken || !!this.refreshToken;
   }
 
   removeAuthTokens() {
-    this.access = null;
-    this.refresh = null;
+    this.accessToken = null;
+    this.refreshToken = null;
   }
 
   restoreAuthTokens() {
     this.setAuthTokens({
-      access: loadStorageItem(ACCESS_TOKEN),
-      refresh: loadStorageItem(REFRESH_TOKEN),
+      accessToken: loadStorageItem(ACCESS_TOKEN),
+      refreshToken: loadStorageItem(REFRESH_TOKEN),
     });
   }
 
-  // implementation of refresh tokens
   refreshAuthTokens() {
-    // const { refresh } = this
-    // return client.POST('/auth/refresh', { refresh }).then(tokens => {
-    //   this.setAuthTokens(tokens)
-    // })
-
-    return Promise.resolve({
-      access: "someAccess",
-      refresh: "someRefresh",
-    }).then((tokens) => {
-      this.setAuthTokens(tokens);
-    });
+    const { refreshToken } = this;
+    return client
+      .post("/refresh", { refreshToken }, { _withoutAuthHeader: true })
+      .then(({ accessToken, refreshToken, user }) => {
+        this.setAuthTokens({ accessToken, refreshToken });
+        return user;
+      });
   }
 
-  // eslint-disable-next-line
-  login({ login, password, isTokensSync = this.isTokensSync }) {
+  login({ email, password, isTokensSync = this.isTokensSync }) {
     this.isTokensSync = isTokensSync;
 
-    // return client.GET('/auth', { login, password }).then(tokens => {
-    //   this.setAuthTokens(tokens)
-    // })
-
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const model = {
-          username: "some user",
-        };
-        this.setAuthTokens({
-          access: btoa(`${login}:${password}`),
-          refresh: btoa(`${login}:${password}`),
-        });
-        resolve(model);
-      }, 1500);
-    });
+    return client
+      .post("/login", { email, password })
+      .then(({ accessToken, refreshToken, user }) => {
+        this.setAuthTokens({ accessToken, refreshToken });
+        return user;
+      });
   }
 
-  restoreUser() {
-    // return client.GET("/auth/user")
+  register({
+    name,
+    surname,
+    email,
+    password,
+    isTokensSync = this.isTokensSync,
+  }) {
+    this.isTokensSync = isTokensSync;
 
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const model = {
-          username: "some user",
-        };
-        resolve(model);
-      }, 1500);
-    });
+    return client
+      .post("/registration", { name, surname, email, password })
+      .then(({ accessToken, refreshToken, user }) => {
+        this.setAuthTokens({ accessToken, refreshToken });
+        return user;
+      });
   }
 
   // eslint-disable-next-line
   logout() {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve();
-      }, 0);
-    }).then(() => {
+    return client.post("/logout").then(() => {
       this.removeAuthTokens();
     });
   }

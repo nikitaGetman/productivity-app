@@ -15,7 +15,7 @@ async function issueTokens(user) {
 }
 
 class UserService {
-  async registration(email, password) {
+  async registration({ name, surname, email, password }) {
     const candidate = await UserModel.findOne({ email });
     if (candidate) {
       throw ApiError.BadRequest(
@@ -26,6 +26,8 @@ class UserService {
     const hashedPassword = await bcrypt.hash(password, 3);
     const activationLink = uuid.v4();
     const user = await UserModel.create({
+      name,
+      surname,
       email,
       password: hashedPassword,
       activationLink,

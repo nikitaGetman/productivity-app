@@ -4,7 +4,7 @@ import authService from "@/services/auth";
 
 export function requestWithAuth({ _withoutAuthHeader = false, ...config }) {
   if (_withoutAuthHeader) {
-    return config;
+    return { _withoutAuthHeader, ...config };
   }
 
   const additionalHeaders = {
@@ -25,9 +25,13 @@ export const handleAuthError = (() => {
 
   return (error) => {
     const errorStatus = error.response.status;
-    const { _retry } = error.config;
+    const { _retry, _withoutAuthHeader } = error.config;
 
-    if (errorStatus === ERROR_STATUSES.UNAUTHORIZED && !_retry) {
+    if (
+      errorStatus === ERROR_STATUSES.UNAUTHORIZED &&
+      !_retry &&
+      !_withoutAuthHeader
+    ) {
       if (!refreshRequest) {
         refreshRequest = authService.refreshAuthTokens();
       }
@@ -44,6 +48,6 @@ export const handleAuthError = (() => {
       });
     }
 
-    return Promise.reject(error);
+    return Promise.reject(error.response);
   };
 })();

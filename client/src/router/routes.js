@@ -5,11 +5,12 @@ import { MyChallenges } from "@/pages/MyChallenges";
 import { Settings } from "@/pages/Settings";
 import { Challenge } from "@/pages/Challenge";
 import { Landing } from "@/pages/Landing";
+import { Registration } from "@/pages/Registration";
 
 export const ROUTE_NAMES = {
   LANDING: "/",
   LOGIN: "/login",
-  REGISTER: "/register",
+  REGISTRATION: "/registration",
 
   CHALLENGES: "/challenges",
   CHALLENGE: "/challenge", // + '/:id'
@@ -26,6 +27,10 @@ export const publicRoutes = [
   {
     path: ROUTE_NAMES.LOGIN,
     component: Login,
+  },
+  {
+    path: ROUTE_NAMES.REGISTRATION,
+    component: Registration,
   },
 ];
 export const privateRoutes = [

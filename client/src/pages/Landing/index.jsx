@@ -22,7 +22,7 @@ export const Landing = () => {
       <Button
         type="black"
         block
-        onClick={() => history.push(ROUTE_NAMES.REGISTER)}
+        onClick={() => history.push(ROUTE_NAMES.REGISTRATION)}
       >
         Регистрация
       </Button>

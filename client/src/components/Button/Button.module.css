@@ -10,8 +10,15 @@
 
   cursor: pointer;
 }
+.buttonLoading {
+  cursor: wait;
+  opacity: 0.7;
+}
 .block {
   width: 100%;
+}
+.loader {
+  margin-right: 12px;
 }
 
 .primary {

@@ -9,9 +9,9 @@ import { privateRoutes, publicRoutes, ROUTE_NAMES } from "./routes";
 export const AppRouter = () => {
   const { isAuth, isLoading } = useSelector((state) => state.auth);
 
-  if (isLoading) {
-    return <Spin tip="Загрузка..." size="large" className="global-loader" />;
-  }
+  // if (isLoading) {
+  //   return <Spin tip="Загрузка..." size="large" className="global-loader" />;
+  // }
 
   return isAuth ? (
     <MainLayout>

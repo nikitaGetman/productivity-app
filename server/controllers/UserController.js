@@ -11,8 +11,13 @@ class UserController {
           ApiError.BadRequest("Ошибка валидации данных", errors.array())
         );
       }
-      const { email, password } = req.body;
-      const data = await userService.registration(email, password);
+      const { name, surname, email, password } = req.body;
+      const data = await userService.registration({
+        name,
+        surname,
+        email,
+        password,
+      });
 
       return res.json(data);
     } catch (e) {
@@ -61,14 +66,6 @@ class UserController {
       const { user } = req;
       await userService.logout(user.id);
       return res.status(200).json({ status: "Ok" });
-    } catch (e) {
-      next(e);
-    }
-  }
-
-  async getUsers(req, res, next) {
-    try {
-      res.json({ data: "Some secret data" });
     } catch (e) {
       next(e);
     }

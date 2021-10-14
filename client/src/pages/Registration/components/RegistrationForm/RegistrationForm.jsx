@@ -25,12 +25,7 @@ const RegistrationForm = () => {
       <div className={styles.wrapper}>
         <Title>Регистрация</Title>
         <div className={styles.container}>
-          <Form
-            size="large"
-            name="registration-form"
-            initialValues={{}}
-            onFinish={handleSubmit}
-          >
+          <Form size="large" name="registration-form" onFinish={handleSubmit}>
             {error && <div style={{ color: "red" }}>{error}</div>}
             <Form.Item name="name" rules={[rules.required()]}>
               <Input placeholder="Имя" />
@@ -41,7 +36,10 @@ const RegistrationForm = () => {
             <Form.Item name="email" rules={[rules.required(), rules.email()]}>
               <Input placeholder="E-mail" type="email" />
             </Form.Item>
-            <Form.Item name="password" rules={[rules.required()]}>
+            <Form.Item
+              name="password"
+              rules={[rules.required(), rules.password()]}
+            >
               <Input.Password placeholder="Пароль" />
             </Form.Item>
             <Form.Item noStyle>

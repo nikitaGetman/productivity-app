@@ -8,4 +8,20 @@ export const rules = {
     type: "email",
     message,
   }),
+
+  password: (message = "Пароль должен содержать от 3 символов") => ({
+    type: "string",
+    whitespace: true,
+    min: 3,
+    message,
+  }),
+
+  passwordConfirm: ({ getFieldValue }) => ({
+    validator(_, value) {
+      if (!value || getFieldValue("password") === value) {
+        return Promise.resolve();
+      }
+      return Promise.reject(new Error("Пароли не совпадают"));
+    },
+  }),
 };

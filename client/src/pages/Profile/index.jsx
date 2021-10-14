@@ -2,13 +2,11 @@ import React from "react";
 import ProfileHeader from "./components/ProfileHeader";
 import Statistic from "./components/Statistic";
 import { CATEGORIES } from "@/constants/categories";
+import { useSelector } from "react-redux";
 
 export const Profile = () => {
-  const user = {
-    name: "Никита",
-    surname: "Гетьман",
-    avatar: "https://randomuser.me/api/portraits/med/men/75.jpg",
-  };
+  const { user } = useSelector((store) => store.auth);
+
   const data = {
     totalDays: 21,
     detailed: {

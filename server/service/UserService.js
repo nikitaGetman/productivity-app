@@ -15,7 +15,7 @@ async function issueTokens(user) {
 }
 
 class UserService {
-  async registration({ name, surname, email, password }) {
+  async registration({ name, email, password }) {
     const candidate = await UserModel.findOne({ email });
     if (candidate) {
       throw ApiError.BadRequest(
@@ -27,7 +27,6 @@ class UserService {
     const activationLink = uuid.v4();
     const user = await UserModel.create({
       name,
-      surname,
       email,
       password: hashedPassword,
       activationLink,

@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 
 const SettingsForm = () => {
   const dispatch = useDispatch();
-  const { name, surname } = useSelector((store) => store.auth.user);
+  const { name } = useSelector((store) => store.auth.user);
 
   const handleSubmit = async (values) => {
     console.log(values);
@@ -21,16 +21,9 @@ const SettingsForm = () => {
   };
 
   return (
-    <Form
-      size="large"
-      initialValues={{ name, surname }}
-      onFinish={handleSubmit}
-    >
+    <Form size="large" initialValues={{ name }} onFinish={handleSubmit}>
       <Form.Item label="Имя" name="name">
         <Input placeholder="Ваше имя" />
-      </Form.Item>
-      <Form.Item label="Фамилия" name="surname">
-        <Input placeholder="Ваша фамилия" />
       </Form.Item>
 
       <Form.Item label="Логин телеграм" name="telegram">

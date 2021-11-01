@@ -16,8 +16,8 @@ const RegistrationForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = async (values) => {
-    const { name, surname, email, password } = values;
-    dispatch(registerAction({ name, surname, email, password }));
+    const { name, email, password } = values;
+    dispatch(registerAction({ name, email, password }));
   };
 
   return (
@@ -28,10 +28,7 @@ const RegistrationForm = () => {
           <Form size="large" name="registration-form" onFinish={handleSubmit}>
             {error && <div style={{ color: "red" }}>{error}</div>}
             <Form.Item name="name" rules={[rules.required()]}>
-              <Input placeholder="Имя" />
-            </Form.Item>
-            <Form.Item name="surname" rules={[rules.required()]}>
-              <Input placeholder="Фамилия" />
+              <Input placeholder="Ваше имя" />
             </Form.Item>
             <Form.Item name="email" rules={[rules.required(), rules.email()]}>
               <Input placeholder="E-mail" type="email" />

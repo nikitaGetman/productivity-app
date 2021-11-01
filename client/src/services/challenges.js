@@ -16,7 +16,7 @@ class ChallengesService {
       setTimeout(() => {
         let result = challenges;
         if (category === "active")
-          result = challenges.filter((c) => c.isStarted);
+          result = challenges.filter((c) => c.isActive);
         if (category === "liked") result = challenges.filter((c) => c.isLiked);
         resolve(result);
       }, 1500);

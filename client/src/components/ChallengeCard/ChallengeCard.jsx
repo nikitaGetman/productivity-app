@@ -2,13 +2,21 @@ import React from "react";
 import { CATEGORIES_DATA } from "@/constants/categories";
 import {
   ThunderboltOutlined,
+  ThunderboltFilled,
   HeartFilled,
   HeartOutlined,
 } from "@ant-design/icons";
 
 import styles from "./ChallengeCard.module.css";
 
-const ChallengeCard = ({ title, category, isLiked, isStarted, onClick }) => {
+const ChallengeCard = ({
+  title,
+  category,
+  isLiked,
+  isActive,
+  isFinished,
+  onClick,
+}) => {
   const { icon, color } = CATEGORIES_DATA[category];
 
   return (
@@ -21,7 +29,8 @@ const ChallengeCard = ({ title, category, isLiked, isStarted, onClick }) => {
         <div className={styles.icon}>{icon}</div>
         <div className={styles.actions}>
           <div className={styles.started}>
-            {isStarted && <ThunderboltOutlined />}
+            {isActive && <ThunderboltOutlined />}
+            {isFinished && <ThunderboltFilled />}
           </div>
           <div className={styles.heart}>
             {isLiked ? <HeartFilled /> : <HeartOutlined />}

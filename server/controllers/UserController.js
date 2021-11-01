@@ -11,10 +11,9 @@ class UserController {
           ApiError.BadRequest("Ошибка валидации данных", errors.array())
         );
       }
-      const { name, surname, email, password } = req.body;
+      const { name, email, password } = req.body;
       const data = await userService.registration({
         name,
-        surname,
         email,
         password,
       });

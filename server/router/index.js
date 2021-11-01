@@ -9,7 +9,6 @@ const router = new Router();
 router.post(
   "/registration",
   body("name").isString(),
-  body("surname").isString(),
   body("email").isEmail(),
   body("password").isLength({ min: 3, max: 32 }),
   userController.registration

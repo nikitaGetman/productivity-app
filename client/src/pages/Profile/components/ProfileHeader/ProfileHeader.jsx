@@ -24,7 +24,7 @@ const ProfileHeader = ({ user }) => {
         {!user.avatar && <UserOutlined />}
       </div>
 
-      <div className={styles.username}>{user.name + " " + user.surname}</div>
+      <div className={styles.username}>{user.name}</div>
     </PageHeader>
   );
 };

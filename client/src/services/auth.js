@@ -98,17 +98,11 @@ class AuthService {
       });
   }
 
-  register({
-    name,
-    surname,
-    email,
-    password,
-    isTokensSync = this.isTokensSync,
-  }) {
+  register({ name, email, password, isTokensSync = this.isTokensSync }) {
     this.isTokensSync = isTokensSync;
 
     return client
-      .post("/registration", { name, surname, email, password })
+      .post("/registration", { name, email, password })
       .then(({ accessToken, refreshToken, user }) => {
         this.setAuthTokens({ accessToken, refreshToken });
         return user;

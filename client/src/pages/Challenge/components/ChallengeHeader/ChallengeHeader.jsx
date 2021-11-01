@@ -4,6 +4,7 @@ import React from "react";
 import {
   ArrowLeftOutlined,
   ThunderboltOutlined,
+  ThunderboltFilled,
   HeartFilled,
   HeartOutlined,
 } from "@ant-design/icons";
@@ -23,8 +24,9 @@ const ChallengeHeader = ({ challenge }) => {
         <ArrowLeftOutlined />
       </ButtonIcon>
       <div className={styles.actions}>
-        <ButtonIcon className={styles.isStarted}>
-          {challenge.isStarted && <ThunderboltOutlined />}
+        <ButtonIcon className={styles.isActive}>
+          {challenge.isActive && <ThunderboltOutlined />}
+          {challenge.isFinished && <ThunderboltFilled />}
         </ButtonIcon>
         <ButtonIcon>
           {challenge.isLiked ? <HeartFilled /> : <HeartOutlined />}

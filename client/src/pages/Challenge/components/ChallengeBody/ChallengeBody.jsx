@@ -12,7 +12,7 @@ const ChallengeBody = ({ challenge }) => {
       ></div>
 
       <div className={styles.actions}>
-        <Button>Добавить</Button>
+        {!challenge.isActive && <Button>Добавить</Button>}
       </div>
     </>
   );

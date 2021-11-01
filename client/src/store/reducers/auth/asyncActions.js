@@ -12,6 +12,7 @@ export const loginAction =
         isTokensSync: sync,
       });
       dispatch({ type: AUTH_ACTIONS.SET_USER, payload: user });
+      dispatch({ type: AUTH_ACTIONS.SET_ERROR, payload: "" });
     } catch (e) {
       dispatch({ type: AUTH_ACTIONS.SET_ERROR, payload: e.data.message });
     } finally {
@@ -20,17 +21,17 @@ export const loginAction =
   };
 
 export const registerAction =
-  ({ name, surname, email, password }) =>
+  ({ name, email, password }) =>
   async (dispatch) => {
     try {
       dispatch({ type: AUTH_ACTIONS.SET_IS_LOADING, payload: true });
       const user = await authService.register({
         name,
-        surname,
         email,
         password,
       });
       dispatch({ type: AUTH_ACTIONS.SET_USER, payload: user });
+      dispatch({ type: AUTH_ACTIONS.SET_ERROR, payload: "" });
     } catch (e) {
       dispatch({ type: AUTH_ACTIONS.SET_ERROR, payload: e.data.message });
     } finally {
